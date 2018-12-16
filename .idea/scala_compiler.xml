@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ScalaCompilerConfiguration">
+    <profile name="sbt 1" modules="old-deps,spark-2-3-1_9131" />
+    <profile name="sbt 10" modules="spark-sketch">
+      <option name="deprecationWarnings" value="true" />
+      <option name="uncheckedWarnings" value="true" />
+      <option name="featureWarnings" value="true" />
+      <option name="explainTypeErrors" value="true" />
+      <parameters>
+        <parameter value="-Yno-adapted-args" />
+        <parameter value="-P:genjavadoc:out=E:\advance\bigdata\spark\spark-2.3.1\common\sketch\target\java" />
+        <parameter value="-P:genjavadoc:strictVisibility=true" />
+        <parameter value="-target:jvm-1.8" />
+        <parameter value="-sourcepath" />
+        <parameter value="E:\advance\bigdata\spark\spark-2.3.1" />
+      </parameters>
+      <plugins>
+        <plugin path="C:\Users\hocho\.ivy2\cache\com.typesafe.genjavadoc\genjavadoc-plugin_2.11.8\jars\genjavadoc-plugin_2.11.8-0.10.jar" />
+      </plugins>
+    </profile>
+    <profile name="sbt 11" modules="spark-mllib">
+      <option name="deprecationWarnings" value="true" />
+      <option name="uncheckedWarnings" value="true" />
+      <option name="featureWarnings" value="true" />
+      <option name="explainTypeErrors" value="true" />
+      <parameters>
+        <parameter value="-Yno-adapted-args" />
+        <parameter value="-P:genjavadoc:out=E:\advance\bigdata\spark\spark-2.3.1\mllib\target\java" />
+        <parameter value="-P:genjavadoc:strictVisibility=true" />
+        <parameter value="-target:jvm-1.8" />
+        <parameter value="-sourcepath" />
+        <parameter value="E:\advance\bigdata\spark\spark-2.3.1" />
+      </parameters>
+      <plugins>
+        <plugin path="C:\Users\hocho\.ivy2\cache\com.typesafe.genjavadoc\genjavadoc-plugin_2.11.8\jars\genjavadoc-plugin_2.11.8-0.10.jar" />
+      </plugins>
+    </profile>
+    <profile name="sbt 12" modules="spark-sql">
+      <option name="deprecationWarnings" value="true" />
+      <option name="uncheckedWarnings" value="true" />
+      <option name="featureWarnings" value="true" />
+      <option name="explainTypeErrors" value="true" />
+      <parameters>
+        <parameter value="-Yno-adapted-args" />
+        <parameter value="-P:genjavadoc:out=E:\advance\bigdata\spark\spark-2.3.1\sql\core\target\java" />
+        <parameter value="-P:genjavadoc:strictVisibility=true" />
+        <parameter value="-target:jvm-1.8" />
+        <parameter value="-sourcepath" />
+        <parameter value="E:\advance\bigdata\spark\spark-2.3.1" />
+      </parameters>
+      <plugins>
+        <plugin path="C:\Users\hocho\.ivy2\cache\com.typesafe.genjavadoc\genjavadoc-plugin_2.11.8\jars\genjavadoc-plugin_2.11.8-0.10.jar" />
+      </plugins>
+    </profile>
+    <profile name="sbt 13" modules="spark-graphx">
+      <option name="deprecationWarnings" value="true" />
+      <option name="uncheckedWarnings" value="true" />
+      <option name="featureWarnings" value="true" />
+      <option name="explainTypeErrors" value="true" />
+      <parameters>
+        <parameter value="-Yno-adapted-args" />
+        <parameter value="-P:genjavadoc:out=E:\advance\bigdata\spark\spark-2.3.1\graphx\target\java" />
+        <parameter value="-P:genjavadoc:strictVisibility=true" />
+        <parameter value="-target:jvm-1.8" />
+        <parameter value="-sourcepath" />
+        <parameter value="E:\advance\bigdata\spark\spark-2.3.1" />
+      </parameters>
+      <plugins>
+        <plugin path="C:\Users\hocho\.ivy2\cache\com.typesafe.genjavadoc\genjavadoc-plugin_2.11.8\jars\genjavadoc-plugin_2.11.8-0.10.jar" />
+      </plugins>
+    </profile>
+    <profile name="sbt 14" modules="spark-sql-kafka-0-10">
+      <option name="deprecationWarnings" value="true" />
+      <option name="uncheckedWarnings" value="true" />
+      <option name="featureWarnings" value="true" />
+      <option name="explainTypeErrors" value="true" />
+      <parameters>
+        <parameter value="-Yno-adapted-args" />
+        <parameter value="-P:genjavadoc:out=E:\advance\bigdata\spark\spark-2.3.1\external\kafka-0-10-sql\target\java" />
+        <parameter value="-P:genjavadoc:strictVisibility=true" />
+        <parameter value="-target:jvm-1.8" />
+        <parameter value="-sourcepath" />
+        <parameter value="E:\advance\bigdata\spark\spark-2.3.1" />
+      </parameters>
+      <plugins>
+        <plugin path="C:\Users\hocho\.ivy2\cache\com.typesafe.genjavadoc\genjavadoc-plugin_2.11.8\jars\genjavadoc-plugin_2.11.8-0.10.jar" />
+      </plugins>
+    </profile>
+    <profile name="sbt 15" modules="spark-repl">
+      <option name="deprecationWarnings" value="true" />
+      <option name="uncheckedWarnings" value="true" />
+      <option name="featureWarnings" value="true" />
+      <option name="explainTypeErrors" value="true" />
+      <parameters>
+        <parameter value="-Yno-adapted-args" />
+        <parameter value="-P:genjavadoc:out=E:\advance\bigdata\spark\spark-2.3.1\repl\target\java" />
+        <parameter value="-P:genjavadoc:strictVisibility=true" />
+        <parameter value="-target:jvm-1.8" />
+        <parameter value="-sourcepath" />
+        <parameter value="E:\advance\bigdata\spark\spark-2.3.1" />
+      </parameters>
+      <plugins>
+        <plugin path="C:\Users\hocho\.ivy2\cache\com.typesafe.genjavadoc\genjavadoc-plugin_2.11.8\jars\genjavadoc-plugin_2.11.8-0.10.jar" />
+      </plugins>
+    </profile>
+    <profile name="sbt 16" modules="spark-catalyst">
+      <option name="deprecationWarnings" value="true" />
+      <option name="uncheckedWarnings" value="true" />
+      <option name="featureWarnings" value="true" />
+      <option name="explainTypeErrors" value="true" />
+      <parameters>
+        <parameter value="-Yno-adapted-args" />
+        <parameter value="-P:genjavadoc:out=E:\advance\bigdata\spark\spark-2.3.1\sql\catalyst\target\java" />
+        <parameter value="-P:genjavadoc:strictVisibility=true" />
+        <parameter value="-target:jvm-1.8" />
+        <parameter value="-sourcepath" />
+        <parameter value="E:\advance\bigdata\spark\spark-2.3.1" />
+      </parameters>
+      <plugins>
+        <plugin path="C:\Users\hocho\.ivy2\cache\com.typesafe.genjavadoc\genjavadoc-plugin_2.11.8\jars\genjavadoc-plugin_2.11.8-0.10.jar" />
+      </plugins>
+    </profile>
+    <profile name="sbt 17" modules="spark-tools">
+      <option name="deprecationWarnings" value="true" />
+      <option name="uncheckedWarnings" value="true" />
+      <option name="featureWarnings" value="true" />
+      <option name="explainTypeErrors" value="true" />
+      <parameters>
+        <parameter value="-Yno-adapted-args" />
+        <parameter value="-P:genjavadoc:out=E:\advance\bigdata\spark\spark-2.3.1\tools\target\java" />
+        <parameter value="-P:genjavadoc:strictVisibility=true" />
+        <parameter value="-target:jvm-1.8" />
+        <parameter value="-sourcepath" />
+        <parameter value="E:\advance\bigdata\spark\spark-2.3.1" />
+      </parameters>
+      <plugins>
+        <plugin path="C:\Users\hocho\.ivy2\cache\com.typesafe.genjavadoc\genjavadoc-plugin_2.11.8\jars\genjavadoc-plugin_2.11.8-0.10.jar" />
+      </plugins>
+    </profile>
+    <profile name="sbt 18" modules="spark-hive">
+      <option name="uncheckedWarnings" value="true" />
+      <option name="featureWarnings" value="true" />
+      <option name="explainTypeErrors" value="true" />
+      <parameters>
+        <parameter value="-Yno-adapted-args" />
+        <parameter value="-P:genjavadoc:out=E:\advance\bigdata\spark\spark-2.3.1\sql\hive\target\java" />
+        <parameter value="-P:genjavadoc:strictVisibility=true" />
+        <parameter value="-target:jvm-1.8" />
+        <parameter value="-sourcepath" />
+        <parameter value="E:\advance\bigdata\spark\spark-2.3.1" />
+      </parameters>
+      <plugins>
+        <plugin path="C:\Users\hocho\.ivy2\cache\com.typesafe.genjavadoc\genjavadoc-plugin_2.11.8\jars\genjavadoc-plugin_2.11.8-0.10.jar" />
+      </plugins>
+    </profile>
+    <profile name="sbt 19" modules="spark-core">
+      <option name="deprecationWarnings" value="true" />
+      <option name="uncheckedWarnings" value="true" />
+      <option name="featureWarnings" value="true" />
+      <option name="explainTypeErrors" value="true" />
+      <parameters>
+        <parameter value="-Yno-adapted-args" />
+        <parameter value="-P:genjavadoc:out=E:\advance\bigdata\spark\spark-2.3.1\core\target\java" />
+        <parameter value="-P:genjavadoc:strictVisibility=true" />
+        <parameter value="-target:jvm-1.8" />
+        <parameter value="-sourcepath" />
+        <parameter value="E:\advance\bigdata\spark\spark-2.3.1" />
+      </parameters>
+      <plugins>
+        <plugin path="C:\Users\hocho\.ivy2\cache\com.typesafe.genjavadoc\genjavadoc-plugin_2.11.8\jars\genjavadoc-plugin_2.11.8-0.10.jar" />
+      </plugins>
+    </profile>
+    <profile name="sbt 2" modules="spark-unsafe">
+      <option name="deprecationWarnings" value="true" />
+      <option name="uncheckedWarnings" value="true" />
+      <option name="featureWarnings" value="true" />
+      <option name="explainTypeErrors" value="true" />
+      <parameters>
+        <parameter value="-Yno-adapted-args" />
+        <parameter value="-P:genjavadoc:out=E:\advance\bigdata\spark\spark-2.3.1\common\unsafe\target\java" />
+        <parameter value="-P:genjavadoc:strictVisibility=true" />
+        <parameter value="-target:jvm-1.8" />
+        <parameter value="-sourcepath" />
+        <parameter value="E:\advance\bigdata\spark\spark-2.3.1" />
+      </parameters>
+      <plugins>
+        <plugin path="C:\Users\hocho\.ivy2\cache\com.typesafe.genjavadoc\genjavadoc-plugin_2.11.8\jars\genjavadoc-plugin_2.11.8-0.10.jar" />
+      </plugins>
+    </profile>
+    <profile name="sbt 20" modules="spark-mllib-local">
+      <option name="deprecationWarnings" value="true" />
+      <option name="uncheckedWarnings" value="true" />
+      <option name="featureWarnings" value="true" />
+      <option name="explainTypeErrors" value="true" />
+      <parameters>
+        <parameter value="-Yno-adapted-args" />
+        <parameter value="-P:genjavadoc:out=E:\advance\bigdata\spark\spark-2.3.1\mllib-local\target\java" />
+        <parameter value="-P:genjavadoc:strictVisibility=true" />
+        <parameter value="-target:jvm-1.8" />
+        <parameter value="-sourcepath" />
+        <parameter value="E:\advance\bigdata\spark\spark-2.3.1" />
+      </parameters>
+      <plugins>
+        <plugin path="C:\Users\hocho\.ivy2\cache\com.typesafe.genjavadoc\genjavadoc-plugin_2.11.8\jars\genjavadoc-plugin_2.11.8-0.10.jar" />
+      </plugins>
+    </profile>
+    <profile name="sbt 21" modules="spark-streaming-kafka-0-10-assembly">
+      <option name="deprecationWarnings" value="true" />
+      <option name="uncheckedWarnings" value="true" />
+      <option name="featureWarnings" value="true" />
+      <option name="explainTypeErrors" value="true" />
+      <parameters>
+        <parameter value="-Yno-adapted-args" />
+        <parameter value="-P:genjavadoc:out=E:\advance\bigdata\spark\spark-2.3.1\external\kafka-0-10-assembly\target\java" />
+        <parameter value="-P:genjavadoc:strictVisibility=true" />
+        <parameter value="-target:jvm-1.8" />
+        <parameter value="-sourcepath" />
+        <parameter value="E:\advance\bigdata\spark\spark-2.3.1" />
+      </parameters>
+      <plugins>
+        <plugin path="C:\Users\hocho\.ivy2\cache\com.typesafe.genjavadoc\genjavadoc-plugin_2.11.8\jars\genjavadoc-plugin_2.11.8-0.10.jar" />
+      </plugins>
+    </profile>
+    <profile name="sbt 22" modules="spark-streaming">
+      <option name="deprecationWarnings" value="true" />
+      <option name="uncheckedWarnings" value="true" />
+      <option name="featureWarnings" value="true" />
+      <option name="explainTypeErrors" value="true" />
+      <parameters>
+        <parameter value="-Yno-adapted-args" />
+        <parameter value="-P:genjavadoc:out=E:\advance\bigdata\spark\spark-2.3.1\streaming\target\java" />
+        <parameter value="-P:genjavadoc:strictVisibility=true" />
+        <parameter value="-target:jvm-1.8" />
+        <parameter value="-sourcepath" />
+        <parameter value="E:\advance\bigdata\spark\spark-2.3.1" />
+      </parameters>
+      <plugins>
+        <plugin path="C:\Users\hocho\.ivy2\cache\com.typesafe.genjavadoc\genjavadoc-plugin_2.11.8\jars\genjavadoc-plugin_2.11.8-0.10.jar" />
+      </plugins>
+    </profile>
+    <profile name="sbt 23" modules="spark-network-shuffle">
+      <option name="deprecationWarnings" value="true" />
+      <option name="uncheckedWarnings" value="true" />
+      <option name="featureWarnings" value="true" />
+      <option name="explainTypeErrors" value="true" />
+      <parameters>
+        <parameter value="-Yno-adapted-args" />
+        <parameter value="-P:genjavadoc:out=E:\advance\bigdata\spark\spark-2.3.1\common\network-shuffle\target\java" />
+        <parameter value="-P:genjavadoc:strictVisibility=true" />
+        <parameter value="-target:jvm-1.8" />
+        <parameter value="-sourcepath" />
+        <parameter value="E:\advance\bigdata\spark\spark-2.3.1" />
+      </parameters>
+      <plugins>
+        <plugin path="C:\Users\hocho\.ivy2\cache\com.typesafe.genjavadoc\genjavadoc-plugin_2.11.8\jars\genjavadoc-plugin_2.11.8-0.10.jar" />
+      </plugins>
+    </profile>
+    <profile name="sbt 24" modules="spark-launcher">
+      <option name="deprecationWarnings" value="true" />
+      <option name="uncheckedWarnings" value="true" />
+      <option name="featureWarnings" value="true" />
+      <option name="explainTypeErrors" value="true" />
+      <parameters>
+        <parameter value="-Yno-adapted-args" />
+        <parameter value="-P:genjavadoc:out=E:\advance\bigdata\spark\spark-2.3.1\launcher\target\java" />
+        <parameter value="-P:genjavadoc:strictVisibility=true" />
+        <parameter value="-target:jvm-1.8" />
+        <parameter value="-sourcepath" />
+        <parameter value="E:\advance\bigdata\spark\spark-2.3.1" />
+      </parameters>
+      <plugins>
+        <plugin path="C:\Users\hocho\.ivy2\cache\com.typesafe.genjavadoc\genjavadoc-plugin_2.11.8\jars\genjavadoc-plugin_2.11.8-0.10.jar" />
+      </plugins>
+    </profile>
+    <profile name="sbt 3" modules="spark-assembly">
+      <option name="deprecationWarnings" value="true" />
+      <option name="uncheckedWarnings" value="true" />
+      <option name="featureWarnings" value="true" />
+      <option name="explainTypeErrors" value="true" />
+      <parameters>
+        <parameter value="-Yno-adapted-args" />
+        <parameter value="-P:genjavadoc:out=E:\advance\bigdata\spark\spark-2.3.1\assembly\target\java" />
+        <parameter value="-P:genjavadoc:strictVisibility=true" />
+        <parameter value="-target:jvm-1.8" />
+        <parameter value="-sourcepath" />
+        <parameter value="E:\advance\bigdata\spark\spark-2.3.1" />
+      </parameters>
+      <plugins>
+        <plugin path="C:\Users\hocho\.ivy2\cache\com.typesafe.genjavadoc\genjavadoc-plugin_2.11.8\jars\genjavadoc-plugin_2.11.8-0.10.jar" />
+      </plugins>
+    </profile>
+    <profile name="sbt 4" modules="spark-streaming-kafka-0-10">
+      <option name="deprecationWarnings" value="true" />
+      <option name="uncheckedWarnings" value="true" />
+      <option name="featureWarnings" value="true" />
+      <option name="explainTypeErrors" value="true" />
+      <parameters>
+        <parameter value="-Yno-adapted-args" />
+        <parameter value="-P:genjavadoc:out=E:\advance\bigdata\spark\spark-2.3.1\external\kafka-0-10\target\java" />
+        <parameter value="-P:genjavadoc:strictVisibility=true" />
+        <parameter value="-target:jvm-1.8" />
+        <parameter value="-sourcepath" />
+        <parameter value="E:\advance\bigdata\spark\spark-2.3.1" />
+      </parameters>
+      <plugins>
+        <plugin path="C:\Users\hocho\.ivy2\cache\com.typesafe.genjavadoc\genjavadoc-plugin_2.11.8\jars\genjavadoc-plugin_2.11.8-0.10.jar" />
+      </plugins>
+    </profile>
+    <profile name="sbt 5" modules="spark-tags">
+      <option name="deprecationWarnings" value="true" />
+      <option name="uncheckedWarnings" value="true" />
+      <option name="featureWarnings" value="true" />
+      <option name="explainTypeErrors" value="true" />
+      <parameters>
+        <parameter value="-Yno-adapted-args" />
+        <parameter value="-P:genjavadoc:out=E:\advance\bigdata\spark\spark-2.3.1\common\tags\target\java" />
+        <parameter value="-P:genjavadoc:strictVisibility=true" />
+        <parameter value="-target:jvm-1.8" />
+        <parameter value="-sourcepath" />
+        <parameter value="E:\advance\bigdata\spark\spark-2.3.1" />
+      </parameters>
+      <plugins>
+        <plugin path="C:\Users\hocho\.ivy2\cache\com.typesafe.genjavadoc\genjavadoc-plugin_2.11.8\jars\genjavadoc-plugin_2.11.8-0.10.jar" />
+      </plugins>
+    </profile>
+    <profile name="sbt 6" modules="spark-parent">
+      <option name="deprecationWarnings" value="true" />
+      <option name="uncheckedWarnings" value="true" />
+      <option name="featureWarnings" value="true" />
+      <option name="explainTypeErrors" value="true" />
+      <parameters>
+        <parameter value="-Yno-adapted-args" />
+        <parameter value="-P:genjavadoc:out=E:\advance\bigdata\spark\spark-2.3.1\target\java" />
+        <parameter value="-P:genjavadoc:strictVisibility=true" />
+        <parameter value="-target:jvm-1.8" />
+        <parameter value="-sourcepath" />
+        <parameter value="E:\advance\bigdata\spark\spark-2.3.1" />
+      </parameters>
+      <plugins>
+        <plugin path="C:\Users\hocho\.ivy2\cache\com.typesafe.genjavadoc\genjavadoc-plugin_2.11.8\jars\genjavadoc-plugin_2.11.8-0.10.jar" />
+      </plugins>
+    </profile>
+    <profile name="sbt 7" modules="spark-examples">
+      <option name="deprecationWarnings" value="true" />
+      <option name="uncheckedWarnings" value="true" />
+      <option name="featureWarnings" value="true" />
+      <option name="explainTypeErrors" value="true" />
+      <parameters>
+        <parameter value="-Yno-adapted-args" />
+        <parameter value="-P:genjavadoc:out=E:\advance\bigdata\spark\spark-2.3.1\examples\target\java" />
+        <parameter value="-P:genjavadoc:strictVisibility=true" />
+        <parameter value="-target:jvm-1.8" />
+        <parameter value="-sourcepath" />
+        <parameter value="E:\advance\bigdata\spark\spark-2.3.1" />
+      </parameters>
+      <plugins>
+        <plugin path="C:\Users\hocho\.ivy2\cache\com.typesafe.genjavadoc\genjavadoc-plugin_2.11.8\jars\genjavadoc-plugin_2.11.8-0.10.jar" />
+      </plugins>
+    </profile>
+    <profile name="sbt 8" modules="spark-kvstore">
+      <option name="deprecationWarnings" value="true" />
+      <option name="uncheckedWarnings" value="true" />
+      <option name="featureWarnings" value="true" />
+      <option name="explainTypeErrors" value="true" />
+      <parameters>
+        <parameter value="-Yno-adapted-args" />
+        <parameter value="-P:genjavadoc:out=E:\advance\bigdata\spark\spark-2.3.1\common\kvstore\target\java" />
+        <parameter value="-P:genjavadoc:strictVisibility=true" />
+        <parameter value="-target:jvm-1.8" />
+        <parameter value="-sourcepath" />
+        <parameter value="E:\advance\bigdata\spark\spark-2.3.1" />
+      </parameters>
+      <plugins>
+        <plugin path="C:\Users\hocho\.ivy2\cache\com.typesafe.genjavadoc\genjavadoc-plugin_2.11.8\jars\genjavadoc-plugin_2.11.8-0.10.jar" />
+      </plugins>
+    </profile>
+    <profile name="sbt 9" modules="spark-network-common">
+      <option name="deprecationWarnings" value="true" />
+      <option name="uncheckedWarnings" value="true" />
+      <option name="featureWarnings" value="true" />
+      <option name="explainTypeErrors" value="true" />
+      <parameters>
+        <parameter value="-Yno-adapted-args" />
+        <parameter value="-P:genjavadoc:out=E:\advance\bigdata\spark\spark-2.3.1\common\network-common\target\java" />
+        <parameter value="-P:genjavadoc:strictVisibility=true" />
+        <parameter value="-target:jvm-1.8" />
+        <parameter value="-sourcepath" />
+        <parameter value="E:\advance\bigdata\spark\spark-2.3.1" />
+      </parameters>
+      <plugins>
+        <plugin path="C:\Users\hocho\.ivy2\cache\com.typesafe.genjavadoc\genjavadoc-plugin_2.11.8\jars\genjavadoc-plugin_2.11.8-0.10.jar" />
+      </plugins>
+    </profile>
+  </component>
+</project>
