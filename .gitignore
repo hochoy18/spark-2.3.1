@@ -7,3 +7,4 @@ target
 sparktest01.iml
 *.iml
 ./*.iml
+*/target
