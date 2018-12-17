@@ -72,6 +72,9 @@ import org.apache.spark.util._
 class SparkContext(config: SparkConf) extends Logging {
 
   // The call site where this SparkContext was constructed.
+  // 这个SparkContext构建的调用站点。
+  // 当在spark包中调用类时，返回调用spark的用户代码类的名称，以及它们调用的spark方法。
+  // CallSite存储了线程栈中最靠近栈顶的用户类以及最靠近栈底的Scala或者Spark核心类信息。
   private val creationSite: CallSite = Utils.getCallSite()
 
   // If true, log warnings instead of throwing exceptions when multiple SparkContexts are active
@@ -269,6 +272,7 @@ class SparkContext(config: SparkConf) extends Logging {
   }
   def statusTracker: SparkStatusTracker = _statusTracker
 
+  // sparkUI显示进度条的
   private[spark] def progressBar: Option[ConsoleProgressBar] = _progressBar
 
   private[spark] def ui: Option[SparkUI] = _ui
@@ -450,6 +454,13 @@ class SparkContext(config: SparkConf) extends Logging {
     // the bound port to the cluster manager properly
     _ui.foreach(_.bind())
 
+    /**
+      * 默认情况下，Spark使用HDFS作为分布式文件系统，所以需要获取Hadoop相关配置信息，获取的信息包括：
+      *1.将AmazonS3文件系统的AccessKeyId和SecretAccessKey加载到hadoop的Configuration;
+      *2.将SparkConf中的所有以spark.hadoop.开头的属性都复制到hadoop的Configuration;
+      *3.将SparkConf的属性spark.buffer.size复制为hadoop的Configuration的配置io.file.buffer.size
+      * 注意：如果指定了SPARK_YARN_MODE属性，则会使用YarnSparkHadoopUtil，否则默认为SparkHadoopUtil.
+      */
     _hadoopConfiguration = SparkHadoopUtil.get.newConfiguration(_conf)
 
     // Add each JAR given through the constructor
@@ -461,6 +472,19 @@ class SparkContext(config: SparkConf) extends Logging {
       files.foreach(addFile)
     }
 
+  /**
+    * 优化：
+    * Master给Worker发送调度后，Worker最终使用executorEnvs提供的信息启动Executor.可以通过spark.executor.memory
+    * 指定Executor占用的内存大小，也可以配置系统变量SPARK_EXECUTOR_MEMORY或者SPARK_MEM对其大小进行设置。
+    *  默认值为0.6，官方文档建议这个比值不要超过JVM Old Gen区域的比值，因为RDD Cache数据通常都是长期驻留在内存的，也就是说
+    * 最终会被转移到Old Gen区域（如果该Rdd还没被删除的的话），如果这部分的数据允许的尺寸太大，势必把Old Gen区域占满，
+    * 造成频繁的圈梁的垃圾回收。
+    *
+    * 如何调整这个值，取决于你的应用对数据的使用模式和数据的规模，粗略的来说，如果频繁发生全量的垃圾回收，可以考虑降低这个
+    * 值，这样RDD Cache可用的内存空间就会减少（剩下的部分Cache数据就需要通过Disk Store写到磁盘上了），虽然会带来一定的
+    * 性能损失，但是腾出来更多的内存空间用于执行任务，减少全量的垃圾回收发生的次数，反而可能改善程序运行的整体性能。
+    *
+    */
     _executorMemory = _conf.getOption("spark.executor.memory")
       .orElse(Option(System.getenv("SPARK_EXECUTOR_MEMORY")))
       .orElse(Option(System.getenv("SPARK_MEM"))
@@ -493,10 +517,20 @@ class SparkContext(config: SparkConf) extends Logging {
     _schedulerBackend = sched
     _taskScheduler = ts
     _dagScheduler = new DAGScheduler(this)
+
+    /**
+      * 这一句代码是什么意思呢？ask方法是=》这个方法只发送一次消息，从不重试。上面代码有初始化 _heartbeatReceiver 的
+      * TaskSchedulerIsSet仅仅是一个对象，表示一个TaskSchedulerIs设置事件，由HeartbeatReceiver类中的receiveAndReply方法处理
+      * 这句话整体就是把_taskScheduler的值赋值给taskScheduler
+      **/
     _heartbeatReceiver.ask[Boolean](TaskSchedulerIsSet)
 
     // start TaskScheduler after taskScheduler sets DAGScheduler reference in DAGScheduler's
     // constructor
+    /**
+      * 启动taskScheduler，调用的是TaskSchedulerImpl的start()方法
+      * 也会调用backend的start方法
+      * */
     _taskScheduler.start()
 
     _applicationId = _taskScheduler.applicationId()
@@ -527,6 +561,12 @@ class SparkContext(config: SparkConf) extends Logging {
       }
 
     // Optionally scale number of executors dynamically based on workload. Exposed for testing.
+    /**
+      * dynamicAllocationEnabled用于对已经分配的Executor进行管理，创建和启动ExecutorAllocationManager。
+      *
+      * 返回在给定的conf中是否启用了动态分配。默认是没有启动的 false
+      * 设置spark.dynamicAllocation.enabled为true 可以启动动态分配
+      */
     val dynamicAllocationEnabled = Utils.isDynamicAllocationEnabled(_conf)
     _executorAllocationManager =
       if (dynamicAllocationEnabled) {
@@ -552,7 +592,12 @@ class SparkContext(config: SparkConf) extends Logging {
     _cleaner.foreach(_.start())
 
     setupAndStartListenerBus()
+
+    /**
+      * 在SparkContext的初始化过程中，可能对其环境造成影响，所以需要更新环境。就是提交代码后，如果更新了环境
+      */
     postEnvironmentUpdate()
+    /**  发布应用程序启动事件 */
     postApplicationStart()
 
     // Post init
