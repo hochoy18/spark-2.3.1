@@ -538,6 +538,15 @@ class PairRDDFunctions[K, V](self: RDD[(K, V)])
   }
 
   /**
+    * 1.join 算子内部使用了cogroup算子，这个算子返回的是（key,(v1,v2)）这种形式的元组
+    *
+    * 2.深入cogroup算子，发现其根据rdd1,rdd2创建了一个CoGroupedRDD
+    *
+    * 3.简要的分析了CoGroupedRDD的依赖关系，看到如果两个rdd的分区函数相同，那么生成的rdd分区数不变，它们之间是一对一依赖，也就是窄依赖，从而可以减少依次shuffle
+    *
+    * 4. CoGroupedRDD的分区函数就是将两个rdd的相同分区索引的分区合成一个新的分区，并且通过NarrowCoGroupSplitDep这个类实现了序列化
+    */
+  /**
    * Return an RDD containing all pairs of elements with matching keys in `this` and `other`. Each
    * pair of elements will be returned as a (k, (v1, v2)) tuple, where (k, v1) is in `this` and
    * (k, v2) is in `other`. Uses the given Partitioner to partition the output RDD.
