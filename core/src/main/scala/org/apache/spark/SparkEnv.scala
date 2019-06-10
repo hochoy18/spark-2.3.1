@@ -324,6 +324,14 @@ object SparkEnv extends Logging {
 
     val useLegacyMemoryManager = conf.getBoolean("spark.memory.useLegacyMode", false)
     val memoryManager: MemoryManager =
+
+    /**  noted by hochoy18@sina.com
+      *  1.6以后默认是UnifiedMemoryManager: 统一内存管理器：动态内存分配
+      *  StaticMemoryManager: 静态内存管理器： 对各部分内存静态划分好后便不可变化。
+      *  https://blog.csdn.net/dabokele/article/details/51475469
+      *  两者均 extends { @link org.apache.spark.memory.MemoryManager }
+      */
+
       if (useLegacyMemoryManager) {
         new StaticMemoryManager(conf, numUsableCores)
       } else {
@@ -340,8 +348,16 @@ object SparkEnv extends Logging {
       new NettyBlockTransferService(conf, securityManager, bindAddress, advertiseAddress,
         blockManagerPort, numUsableCores)
 
+    // noted by hochoy18@sina.com
+    // 在Application 启动时会在SparkEnv 中注册 BlockManagerMaster 以及 MapOutputTracker
+    // BlockManagerMaster：对整个集群的Block 数据进行管理的；主要是管理方法
+    // MapOutputTracker:跟踪所有mapper 的输出
     val blockManagerMaster = new BlockManagerMaster(registerOrLookupEndpoint(
       BlockManagerMaster.DRIVER_ENDPOINT_NAME,
+      // noted by hochoy18@sina.com
+      // BlockManagerMasterEndpoint 本身是一个消息体，负责通过远程消息通信的方式发消息
+      // 给BlockManagerSlaveEndpoint 去管理所有节点的BlockManager；block 信息的数据存储在
+      // BlockManagerMasterEndpoint 结构体中
       new BlockManagerMasterEndpoint(rpcEnv, isLocal, conf, listenerBus)),
       conf, isDriver)
 
