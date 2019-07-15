@@ -41,7 +41,11 @@ import org.apache.spark.util.Utils
 
 /**
  * A BlockTransferService that uses Netty to fetch a set of blocks at time.
+  * {@Author hochoy}
+  * 一个块传输服务，它使用Netty在同一时间内获取一组块的集合。
+  *   {@see org.apache.spark.SparkEnv}
  */
+
 private[spark] class NettyBlockTransferService(
     conf: SparkConf,
     securityManager: SecurityManager,
@@ -99,6 +103,19 @@ private[spark] class NettyBlockTransferService(
     }
   }
 
+  /**
+    * {@Author hochoy}
+    * NettyBlockTransferService的fetchBlocks方法用于获取远程shuffle文件，实际上是利用NettyBlockTransferService
+    * 中创建的netty服务  获取远程节点上的shuffle文件
+    * @param host the host of the remote node.
+    * @param port the port of the remote node.
+    * @param execId the executor id.
+    * @param blockIds block ids to fetch.
+    * @param listener the listener to receive block fetching status.
+    * @param tempFileManager TempFileManager to create and clean temp files.
+    *                        If it's not <code>null</code>, the remote blocks will be streamed
+    *                        into temp shuffle files to reduce the memory usage, otherwise,
+    */
   override def fetchBlocks(
       host: String,
       port: Int,
@@ -133,6 +150,27 @@ private[spark] class NettyBlockTransferService(
 
   override def port: Int = server.getPort
 
+
+  /**
+    * {@Author hochoy}
+    * 上传shuffle文件到远程Executor，实际上也是利用NettyBlockTransferService
+    * 中创建的Netty服务。其中步骤如下：
+    * 1.创建Netty服务的客户端，客户端连接的hostname和port正式我们随机选择的BlockManager的hostname和port.
+    * 2.将Block的存储级别Storagelevel序列化。
+    * 3.将BlockByteBuffer转换为数组，便于序列化。
+    * 4.将appId,execId,blockId，序列化的Storagelevel，转换为数组的Block封装为UploadBlock,并将UploadBlock序列化为字节数组。
+    * 5.最终调用Netty客户端的sendRpc方法将字节数组上传，回调函数RpcResponseCallback根据RPC的结果更改上传状态。
+    *
+    *
+    * @param hostname
+    * @param port
+    * @param execId
+    * @param blockId
+    * @param blockData
+    * @param level
+    * @param classTag
+    * @return
+    */
   override def uploadBlock(
       hostname: String,
       port: Int,

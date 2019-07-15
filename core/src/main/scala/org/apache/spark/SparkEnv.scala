@@ -361,7 +361,10 @@ object SparkEnv extends Logging {
       new BlockManagerMasterEndpoint(rpcEnv, isLocal, conf, listenerBus)),
       conf, isDriver)
 
-    // NB: blockManager is not valid until initialize() is called later.
+    /** {@Author hochoy}
+      * NB: blockManager is not valid until{ @see BlockManager#initialize() }is called later.
+      * and initialize call in SparkContext of _env.blockManager.initialize
+      */
     val blockManager = new BlockManager(executorId, rpcEnv, blockManagerMaster,
       serializerManager, conf, memoryManager, mapOutputTracker, shuffleManager,
       blockTransferService, securityManager, numUsableCores)

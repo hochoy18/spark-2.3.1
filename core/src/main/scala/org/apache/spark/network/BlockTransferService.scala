@@ -36,6 +36,8 @@ abstract class BlockTransferService extends ShuffleClient with Closeable with Lo
   /**
    * Initialize the transfer service by giving it the BlockDataManager that can be used to fetch
    * local blocks or put local blocks.
+    * {@Author hochoy}
+    * 通过提供可以用来获取本地块或放置本地块的BlockDataManager来初始化传输服务。
    */
   def init(blockDataManager: BlockDataManager): Unit
 
@@ -46,6 +48,7 @@ abstract class BlockTransferService extends ShuffleClient with Closeable with Lo
 
   /**
    * Port number the service is listening on, available only after [[init]] is invoked.
+    * {@Author hochoy} 服务正在监听的端口号，只有在[[init]]调用后才可用
    */
   def port: Int
 
@@ -61,7 +64,14 @@ abstract class BlockTransferService extends ShuffleClient with Closeable with Lo
    * Note that this API takes a sequence so the implementation can batch requests, and does not
    * return a future so the underlying implementation can invoke onBlockFetchSuccess as soon as
    * the data of a block is fetched, rather than waiting for all blocks to be fetched.
-   */
+   *  {@Author hochoy}
+   *  以异步方式从远程节点获取块序列
+   * 请注意，这个API采用了一个序列，因此实现可以批量请求，而且不会返回一个future，因此底层实现可以在一个块的数据被获取时调用
+    onBlockFetchSuccess，而不是等待所有的块都被获取。
+   *
+   *
+    *
+    */
   override def fetchBlocks(
       host: String,
       port: Int,
@@ -72,6 +82,9 @@ abstract class BlockTransferService extends ShuffleClient with Closeable with Lo
 
   /**
    * Upload a single block to a remote node, available only after [[init]] is invoked.
+    *
+    * {@Author hochoy}
+    * 将单个块上载到远程节点，
    */
   def uploadBlock(
       hostname: String,
@@ -84,8 +97,9 @@ abstract class BlockTransferService extends ShuffleClient with Closeable with Lo
 
   /**
    * A special case of [[fetchBlocks]], as it fetches only one block and is blocking.
-   *
-   * It is also only available after [[init]] is invoked.
+   *  {@Author hochoy}
+   * [[fetchBlocks]] 的一种特殊形式，因为它只读取一个块并且阻塞。
+   * * It is also only available after [[init]] is invoked.
    */
   def fetchBlockSync(
       host: String,

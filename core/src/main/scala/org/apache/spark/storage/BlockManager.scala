@@ -230,6 +230,12 @@ private[spark] class BlockManager(
     blockTransferService.init(this)
     shuffleClient.init(appId)
 
+    /**
+      * noted by hochoy18@sina.com
+      * 设置Block 的赋值策略
+      * <<设置block的复制分片策略由spark.storage.replication.policy指定>>
+      *
+      */
     blockReplicationPolicy = {
       val priorityClass = conf.get(
         "spark.storage.replication.policy", classOf[RandomBlockReplicationPolicy].getName)
@@ -239,6 +245,14 @@ private[spark] class BlockManager(
       ret
     }
 
+    /**
+      *   noted by hochoy18@sina.com
+      *   根据给定参数为对对应的Executor封装一个BlockManagerId对象（块存储的唯一标识）
+      *   executorId:executor的Id，
+      *   blockTransferService.hostName:传输Block数据的服务的主机名
+      *   blockTransferService.port:传输Block数据的服务的主机名
+      *
+      */
     val id =
       BlockManagerId(executorId, blockTransferService.hostName, blockTransferService.port, None)
 
@@ -248,8 +262,13 @@ private[spark] class BlockManager(
       maxOffHeapMemory,
       slaveEndpoint)
 
+    /**
+      *   noted by hochoy18@sina.com
+      *   更新BlockManagerId
+      */
     blockManagerId = if (idFromMaster != null) idFromMaster else id
 
+    //  {@Author hochoy}判断是否开了外部shuffle服务
     shuffleServerId = if (externalShuffleServiceEnabled) {
       logInfo(s"external shuffle service port = $externalShuffleServicePort")
       BlockManagerId(executorId, blockTransferService.hostName, externalShuffleServicePort)
@@ -257,6 +276,9 @@ private[spark] class BlockManager(
       blockManagerId
     }
 
+    /** {@Author hochoy}如果开启了外部shuffle服务，并且该节点是Driver的话就调用registerWithExternalShuffleServer方法
+      *
+      */
     // Register Executors' configuration with the local shuffle service, if one should exist.
     if (externalShuffleServiceEnabled && !blockManagerId.isDriver) {
       registerWithExternalShuffleServer()
